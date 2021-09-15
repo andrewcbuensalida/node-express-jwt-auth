@@ -1,4 +1,4 @@
-<%- include('partials/header'); -%>
+{{>header}} 
 
 <form action="/signup">
   <h2>Sign up</h2>
@@ -11,7 +11,7 @@
   <button>Sign up</button>
 </form>
 
-<%- include('partials/footer'); -%>
+{{>footer}} 
 
 <script>
   const form = document.querySelector('form');
