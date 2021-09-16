@@ -36,7 +36,7 @@ const handleErrors = (err) => {
 };
 
 // create json web token
-const maxAge = 3 * 24 * 60 * 60;
+const maxAge = 60;
 const createToken = (id) => {
 	return jwt.sign({ id }, "net ninja secret", {
 		expiresIn: maxAge,
@@ -73,7 +73,7 @@ module.exports.login_post = async (req, res) => {
 		const user = await User.login(email, password);
 		const token = createToken(user._id);
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-		const expiryDate = Date.now() + 1000000;
+		const expiryDate = Date.now() + maxAge * 1000;
 		console.log("this is expiryDate");
 		console.log(expiryDate);
 		res.cookie("expiryDate", expiryDate, {
