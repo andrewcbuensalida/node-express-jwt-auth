@@ -6,6 +6,7 @@ const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 const handlebars = require("express-handlebars");
 const { nextTick } = require("process");
 require("dotenv").config();
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 // middleware
@@ -32,8 +33,8 @@ mongoose
 		useCreateIndex: true,
 	})
 	.then((result) => {
-		console.log(`Listening to 5000`);
-		app.listen(5000);
+		console.log(`Listening to ${PORT}`);
+		app.listen(PORT);
 	})
 	.catch((err) => console.log(err));
 

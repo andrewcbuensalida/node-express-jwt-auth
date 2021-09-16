@@ -26,3 +26,5 @@ every second, expiresIn is based on the date when token is created + time give
 minus now. can be hacked if user inspects application and changes cookie expiryDate
 to a later date. but if token expires, at least if the user navigates to a new route,
 server will know token is expired and direct the user to logout.
+
+to deploy to firebase, trying https://console.firebase.google.com/project/cookies-recipes-f2c93/hosting/sites
