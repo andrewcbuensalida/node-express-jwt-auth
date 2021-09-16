@@ -4,7 +4,6 @@ const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 const handlebars = require("express-handlebars");
-const { nextTick } = require("process");
 require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const app = express();
