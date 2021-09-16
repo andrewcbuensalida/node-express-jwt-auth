@@ -4,6 +4,7 @@ const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 const handlebars = require("express-handlebars");
+const { nextTick } = require("process");
 require("dotenv").config();
 const app = express();
 
@@ -31,13 +32,18 @@ mongoose
 		useCreateIndex: true,
 	})
 	.then((result) => {
-		console.log(`Listening to 3000`);
-		app.listen(3000);
+		console.log(`Listening to 5000`);
+		app.listen(5000);
 	})
 	.catch((err) => console.log(err));
 
 // routes
-app.get("*", checkUser);
+// check user could be app.get('*', checkUser) OR
+app.use(checkUser);
 app.get("/", (req, res) => res.render("home"));
-app.get("/cookies", requireAuth, (req, res) => res.render("smoothies"));
 app.use(authRoutes);
+app.use(requireAuth);
+app.get("/cookies", (req, res) => res.render("smoothies"));
+app.all("*", (req, res) =>
+	res.status(404).send(`Page you are looking for is not here.`)
+);

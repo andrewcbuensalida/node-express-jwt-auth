@@ -20,7 +20,7 @@ const requireAuth = (req, res, next) => {
 	}
 };
 
-// check current user
+// check current user, just to display welcome message in header
 const checkUser = (req, res, next) => {
 	const token = req.cookies.jwt;
 	if (token) {
