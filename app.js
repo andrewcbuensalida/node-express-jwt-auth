@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 const handlebars = require("express-handlebars");
 require("dotenv").config();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 // middleware
@@ -24,7 +24,7 @@ app.engine(
 );
 
 // database connection
-const dbURI = `mongodb+srv://andrewcbuensalida:${process.env.DB_PASSWORD}@cluster0.jm1pi.mongodb.net/my-lesson-12?retryWrites=true&w=majority`;
+const dbURI = `mongodb+srv://andrewcbuensalida:${process.env.DB_PW}@cluster0.jm1pi.mongodb.net/my-lesson-12?retryWrites=true&w=majority`;
 mongoose
 	.connect(dbURI, {
 		useNewUrlParser: true,

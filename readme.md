@@ -27,4 +27,11 @@ minus now. can be hacked if user inspects application and changes cookie expiryD
 to a later date. but if token expires, at least if the user navigates to a new route,
 server will know token is expired and direct the user to logout.
 
-to deploy to firebase, trying https://console.firebase.google.com/project/cookies-recipes-f2c93/hosting/sites
+to deploy to firebase, trying https://cloud.google.com/build/docs/deploying-builds/deploy-firebase
+had to enable api by going to console > apis and services > searching cloud build
+had to delete cloud-builders-community from explorer, doing it from the google cloud
+sdk shell didnt work. couldnt make firebase work.
+
+so trying app engine again. app.yaml is to deploy from vs code to app engine.
+https://www.youtube.com/watch?v=HgpCjChgjoQ&list=PL42xwJRIG3xCtmOrJAQFR5sIJFKIJ9MEn&index=2
+to set environment variables,
