@@ -13,14 +13,15 @@
 </nav>
 <script>
 	const cookies = document.cookie.split('; ')
+	
 	const expiryDateText = cookies.find(cookie=>{
 		if(cookie.includes('expiryDate=')){
 			return cookie
 		}
 	})
+
 	if(expiryDateText){
 		let expiresIn = Math.floor((Number(expiryDateText.split('=')[1])-Date.now())/1000)
-		console.log(expiresIn)
 		function showExpiresIn(expiresIn){
 			document.getElementById('expiresIn').innerHTML = 
 				`Your session expires in ${expiresIn} seconds`;
@@ -28,7 +29,7 @@
 		if(expiresIn>0){
 			showExpiresIn(expiresIn)
 			setInterval(()=>{
-				if(expiresIn<1){
+				if(expiresIn<2){
 					location.href = '/logout'
 				}
 				expiresIn--;

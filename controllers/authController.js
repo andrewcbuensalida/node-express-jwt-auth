@@ -36,7 +36,7 @@ const handleErrors = (err) => {
 };
 
 // create json web token
-const maxAge = 60;
+const maxAge = 5;
 const createToken = (id) => {
 	return jwt.sign({ id }, "net ninja secret", {
 		expiresIn: maxAge,
@@ -59,6 +59,12 @@ module.exports.signup_post = async (req, res) => {
 		const user = await User.create({ email, password });
 		const token = createToken(user._id);
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+		const expiryDate = Date.now() + maxAge * 1000;
+		res.cookie("expiryDate", expiryDate, {
+			httpOnly: false,
+			maxAge: maxAge * 1000,
+		});
+
 		res.status(201).json({ user: user._id });
 	} catch (err) {
 		const errors = handleErrors(err);
@@ -74,10 +80,9 @@ module.exports.login_post = async (req, res) => {
 		const token = createToken(user._id);
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 		const expiryDate = Date.now() + maxAge * 1000;
-		console.log("this is expiryDate");
-		console.log(expiryDate);
 		res.cookie("expiryDate", expiryDate, {
 			httpOnly: false,
+			maxAge: maxAge * 1000,
 		});
 		res.status(200).json({ user: user._id });
 	} catch (err) {
@@ -88,5 +93,6 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.logout_get = (req, res) => {
 	res.cookie("jwt", "", { maxAge: 1 });
+	res.cookie("expiryDate", "", { maxAge: 1 });
 	res.redirect("/");
 };
