@@ -35,3 +35,5 @@ sdk shell didnt work. couldnt make firebase work.
 so trying app engine again. app.yaml is to deploy from vs code to app engine.
 https://www.youtube.com/watch?v=HgpCjChgjoQ&list=PL42xwJRIG3xCtmOrJAQFR5sIJFKIJ9MEn&index=2
 to set environment variables,
+
+workflow is push to github and app engine should auto deploy.
