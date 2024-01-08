@@ -30,7 +30,7 @@ const checkUser = (req, res, next) => {
 				next();
 			} else {
 				let user = await User.findById(decodedToken.id);
-				res.locals.email = user.email;
+				res.locals.email = user.email; // locals allows email to be injected in header?
 				next();
 			}
 		});
